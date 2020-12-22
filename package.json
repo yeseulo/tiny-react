@@ -1,0 +1,23 @@
+{
+  "name": "reactx",
+  "version": "1.0.0",
+  "description": "Tiny react",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d build -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeseulo/reactx.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-react": "^7.12.10"
+  }
+}
