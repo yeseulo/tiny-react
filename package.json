@@ -1,5 +1,5 @@
 {
-  "name": "tiny-redux",
+  "name": "tiny-react",
   "version": "1.0.0",
   "description": "Tiny react",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yeseulo/tiny-redux.git"
+    "url": "git+https://github.com/yeseulo/tiny-react.git"
   },
   "keywords": [],
   "author": "",
