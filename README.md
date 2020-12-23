@@ -78,3 +78,27 @@ props: null
 tagName: ƒ Title()
 __proto__: Object
 ```
+
+## Class Component
+- JavaScript에서 클래스와 함수를 구분할 방법이 없어서, 슈퍼 클래스를 가지고 클래스 상속을 받은 함수인지 구분한다.
+- 클래스의 instance를 만들어서 props와 children 주입하고 jsx를 반환하는 render 메소드 호출
+```jsx
+class SubTitle extends Component {
+  render() {
+    return <h3>...</h3>;
+  }
+}
+```
+```javascript
+function createElement(tagName, props, ...children) {
+  if (typeof tagName === 'function') {
+    if (tagName.prototype instanceof Component) {
+      const instance = new tagName({ ...props, children });
+      return instance.render();
+    } else {
+      ...
+    }
+  }
+  return { tagName, props, children };
+}
+```

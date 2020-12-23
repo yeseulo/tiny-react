@@ -1,3 +1,5 @@
+export class Component {}
+
 function renderRealDOM(vdom) {
   if (typeof vdom === 'string') {
     return document.createTextNode(vdom);
@@ -29,8 +31,13 @@ export const render = (function () {
 })();
 
 export function createElement(tagName, props, ...children) {
-  if ( typeof tagName === 'function') {
-    return tagName.apply(null, [props, ...children] );
+  if (typeof tagName === 'function') {
+    if (tagName.prototype instanceof Component) {
+      const instance = new tagName({ ...props, children });
+      return instance.render();
+    } else {
+      return tagName.apply(null, [props, ...children]);
+    }
   }
   return { tagName, props, children };
 }
