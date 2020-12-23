@@ -102,3 +102,31 @@ function createElement(tagName, props, ...children) {
   return { tagName, props, children };
 }
 ```
+
+## Hook의 컨셉
+- 함수가 호출될 때 어떻게 마지막 상태를 react가 알고 그 마지막 상태 값을 넘겨줄까?
+  - Virtual DOM을 가지고 Real DOM을 렌더링할 때, 호출하는 함수들의 수와 순서는 늘 같으니까 어딘가에 그 수와 순서를 저장해두고(그 상태를 저장해두고) 해당 n번 째 함수가 호출되면 저장된 n번 째 상태를 전달한다는 아이디어.
+- 참고: [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html)
+
+#### `useState()`
+- 초기값을 인자로 받고 배열을 반환: value와 value를 업데이트할 dispatch 함수의 배열
+- createElement()에서 return 되기 전, hook이 호출된다. (반드시 함수형 컴포넌트 안에서만)
+- useState()와 createElement() 사이에서 정보 공유용, 어떤 함수가 호출되는지 알 수 있도록 바깥 공간에 순서 값을 가지고 있는다: `currentComponent`
+
+```javascript
+export function useState(initialValue) {
+  const position = currentComponent; // capturing
+
+  // not first call
+  if(!hooks[position]) {
+    hooks[position] = initialValue;
+  }
+
+  return [
+    hooks[position],
+    (nextValue) => {
+      hooks[position] = nextValue;
+    },
+  ];
+}
+```
