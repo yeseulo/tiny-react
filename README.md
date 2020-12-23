@@ -1,4 +1,4 @@
-# ReactX
+# Tiny React
 React의 `createElement`와 `render` 메소드를 간단하게 구현해보기
 
 ---
